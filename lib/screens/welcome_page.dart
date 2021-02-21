@@ -48,7 +48,8 @@ class WelcomePage extends StatelessWidget {
                   StackRemoteDataSourceImpl(apiClinet: apiClinet);
               final question = await obj.getQuestions();
 
-              return Navigator.of(context).pushNamed(HomePage.routeName,
+              return Navigator.of(context).pushReplacementNamed(
+                  HomePage.routeName,
                   arguments: {'question': question});
             },
           ),

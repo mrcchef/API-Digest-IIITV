@@ -1,4 +1,5 @@
 import 'package:api_digest_iiitv/widgets/display_questions.dart';
+import 'package:api_digest_iiitv/widgets/search_by_title.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +13,12 @@ class HomePage extends StatelessWidget {
           'GMAIL',
         ),
       ),
-      body: DisplayQuestions(),
+      body: Column(
+        children: [
+          SearchByTitle(),
+          DisplayQuestions(),
+        ],
+      ),
     );
   }
 }

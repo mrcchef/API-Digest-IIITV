@@ -13,24 +13,26 @@ class DisplayQuestions extends StatelessWidget {
     response = ModalRoute.of(context).settings.arguments;
     questions = response['question'];
     return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "All Questions",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      child: Expanded(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "All Questions",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (ctx, index) {
-                return QuestionCard(questions[index]);
-              },
-              itemCount: questions.length,
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return QuestionCard(questions[index]);
+                },
+                itemCount: questions.length,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
