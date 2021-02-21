@@ -1,5 +1,8 @@
+import 'package:api_digest_iiitv/core/api_client.dart';
 import 'package:api_digest_iiitv/core/api_constants.dart';
+import 'package:api_digest_iiitv/modals/stack_entity.dart';
 import 'package:api_digest_iiitv/modals/stack_model.dart';
+import 'package:api_digest_iiitv/modals/stack_result_model.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -9,13 +12,13 @@ abstract class StackRemoteDataSource {
 }
 
 class StackRemoteDataSourceImpl extends StackRemoteDataSource {
-  Future<dynamic> getQuestions() async {
-    final url =
-        "${ApiConstants.BASE_URL}questions?&order=desc&sort=activity&site=stackoverflow";
-    final response = await http.get(url);
-    final responseBody = json.decode(response.body);
+  final ApiClinet apiClinet;
 
-    print(responseBody);
-    return responseBody;
+  StackRemoteDataSourceImpl({this.apiClinet});
+
+  Future<List<StackEntity>> getQuestions() async {
+    final responseBody = await apiClinet.get();
+    final questions = StackResultModel.fromJson(responseBody).questions;
+    return questions;
   }
 }

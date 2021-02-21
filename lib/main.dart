@@ -1,3 +1,4 @@
+import 'package:api_digest_iiitv/core/api_client.dart';
 import 'package:api_digest_iiitv/modals/stack_remote_data_source.dart';
 import 'package:flutter/material.dart';
 
@@ -5,8 +6,6 @@ import './screens/welcome_page.dart';
 import './screens/home_page.dart';
 
 void main() {
-  final StackRemoteDataSource obj = StackRemoteDataSourceImpl();
-  final response = obj.getQuestions();
   // print(response);
   runApp(MyApp());
 }

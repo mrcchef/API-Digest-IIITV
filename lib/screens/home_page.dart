@@ -1,3 +1,4 @@
+import 'package:api_digest_iiitv/widgets/display_questions.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
           'GMAIL',
         ),
       ),
-      body: Container(),
+      body: DisplayQuestions(),
     );
   }
 }

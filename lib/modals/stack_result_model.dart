@@ -1,8 +1,9 @@
-import 'package:api_digest_iiitv/modals/stack_entity.dart';
 import 'package:api_digest_iiitv/modals/stack_model.dart';
 
 class StackResultModel {
-  List<StackEntity> questions = [];
+  List<StackModel> questions = [];
+
+  StackResultModel({this.questions});
 
   StackResultModel.fromJson(Map<String, dynamic> json) {
     if (json['items'] != null) {

@@ -1,21 +1,21 @@
 import 'package:api_digest_iiitv/modals/stack_entity.dart';
 
 class StackModel extends StackEntity {
-  List<String> tags;
-  int questionScore;
-  bool isAccepted;
-  bool hasAcceptedAnswer;
-  int answerCount;
-  bool isAnswered;
-  int questionId;
-  String itemType;
-  int score;
-  int lastActivityDate;
-  int creationDate;
-  String body;
-  String excerpt;
-  String title;
-  int answerId;
+  final List<String> tags;
+  final int questionScore;
+  final bool isAccepted;
+  final bool hasAcceptedAnswer;
+  final int answerCount;
+  final bool isAnswered;
+  final int questionId;
+  final String itemType;
+  final int score;
+  final int lastActivityDate;
+  final int creationDate;
+  final String body;
+  final String excerpt;
+  final String title;
+  final int answerId;
 
   StackModel(
       {this.tags,
@@ -33,7 +33,7 @@ class StackModel extends StackEntity {
       this.excerpt,
       this.title,
       this.answerId})
-      : super(tags: tags, body: body, title: title);
+      : super(tags: tags, body: body, title: title, questionId: questionId);
 
   factory StackModel.fromJson(Map<String, dynamic> json) {
     return StackModel(
