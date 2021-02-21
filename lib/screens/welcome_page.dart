@@ -17,18 +17,15 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   bool isLoading = false;
 
-  Future<void> enter() async {
-    setState(() {
-      isLoading = true;
-    });
-    final ApiClinet apiClinet = ApiClinet();
-    final StackRemoteDataSource obj =
-        StackRemoteDataSourceImpl(apiClinet: apiClinet);
-    await obj.getQuestions();
-    setState(() {
-      isLoading = false;
-    });
-  }
+  // Future<void> enter() async {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

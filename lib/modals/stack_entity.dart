@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-class StackEntity extends Equatable with ChangeNotifier {
+class StackEntity extends Equatable {
   final List<String> tags;
   final String title;
   final String body;
