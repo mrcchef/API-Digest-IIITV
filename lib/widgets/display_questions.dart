@@ -11,7 +11,6 @@ class DisplayQuestions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       child: Expanded(
         child: Column(
@@ -24,12 +23,16 @@ class DisplayQuestions extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemBuilder: (ctx, index) {
-                  return QuestionCard(questions[index]);
-                },
-                itemCount: questions.length,
-              ),
+              child: questions.length == 0
+                  ? Center(
+                      child: Text("Oops!!! \n No result found!!!"),
+                    )
+                  : ListView.builder(
+                      itemBuilder: (ctx, index) {
+                        return QuestionCard(questions[index]);
+                      },
+                      itemCount: questions.length,
+                    ),
             ),
           ],
         ),
