@@ -1,12 +1,35 @@
 import 'package:api_digest_iiitv/core/api_client.dart';
+import 'package:api_digest_iiitv/modals/stack_entity.dart';
 import 'package:api_digest_iiitv/modals/stack_remote_data_source.dart';
+import 'package:api_digest_iiitv/modals/stack_result_model.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/appbar.dart';
 
 import '../screens/home_page.dart';
 import 'package:flutter/material.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
+  @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  bool isLoading = false;
+
+  Future<void> enter() async {
+    setState(() {
+      isLoading = true;
+    });
+    final ApiClinet apiClinet = ApiClinet();
+    final StackRemoteDataSource obj =
+        StackRemoteDataSourceImpl(apiClinet: apiClinet);
+    await obj.getQuestions();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height * 0.05;
@@ -42,16 +65,8 @@ class WelcomePage extends StatelessWidget {
               Icons.forward,
               size: MediaQuery.of(context).size.height * 0.15,
             ),
-            onTap: () async {
-              final ApiClinet apiClinet = ApiClinet();
-              final StackRemoteDataSource obj =
-                  StackRemoteDataSourceImpl(apiClinet: apiClinet);
-              final question = await obj.getQuestions();
-
-              return Navigator.of(context).pushReplacementNamed(
-                  HomePage.routeName,
-                  arguments: {'question': question});
-            },
+            onTap: () =>
+                Navigator.of(context).pushReplacementNamed(HomePage.routeName),
           ),
         ],
       ),

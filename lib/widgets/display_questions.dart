@@ -1,8 +1,10 @@
 import 'package:api_digest_iiitv/core/api_client.dart';
 import 'package:api_digest_iiitv/modals/stack_entity.dart';
 import 'package:api_digest_iiitv/modals/stack_remote_data_source.dart';
+import 'package:api_digest_iiitv/modals/stack_result_model.dart';
 import 'package:api_digest_iiitv/widgets/question_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DisplayQuestions extends StatelessWidget {
   Map<String, dynamic> response;
@@ -10,8 +12,9 @@ class DisplayQuestions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    response = ModalRoute.of(context).settings.arguments;
-    questions = response['question'];
+    questions = Provider.of<StackResultModel>(context, listen: false).questions;
+    // response = ModalRoute.of(context).settings.arguments;
+    // questions = response['question'];
     return Container(
       child: Expanded(
         child: Column(

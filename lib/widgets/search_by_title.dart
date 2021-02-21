@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SearchByTitle extends StatelessWidget {
+class SearchByTitle extends StatefulWidget {
+  @override
+  _SearchByTitleState createState() => _SearchByTitleState();
+}
+
+class _SearchByTitleState extends State<SearchByTitle> {
   final Key _form = GlobalKey<FormState>();
+
   String question;
   String tags;
+
+  void submit() {
+    print(question);
+    print(tags);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +32,9 @@ class SearchByTitle extends StatelessWidget {
                   decoration: InputDecoration(labelText: 'Your Question'),
                   textInputAction: TextInputAction.next,
                   onSaved: (newQuestion) {
-                    question = newQuestion;
+                    setState(() {
+                      question = newQuestion;
+                    });
                   },
                 ),
                 TextFormField(
@@ -29,14 +43,16 @@ class SearchByTitle extends StatelessWidget {
                       hintText: 'Add tags seperated by semicolons'),
                   textInputAction: TextInputAction.done,
                   onSaved: (newTag) {
-                    tags = newTag;
+                    setState(() {
+                      tags = newTag;
+                    });
                   },
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 FlatButton.icon(
-                  onPressed: () {},
+                  onPressed: submit,
                   icon: Icon(Icons.search),
                   label: Text('Search'),
                   color: Colors.lightGreen,

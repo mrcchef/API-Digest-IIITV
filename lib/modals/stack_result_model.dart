@@ -1,6 +1,7 @@
 import 'package:api_digest_iiitv/modals/stack_model.dart';
+import 'package:flutter/cupertino.dart';
 
-class StackResultModel {
+class StackResultModel with ChangeNotifier {
   List<StackModel> questions = [];
 
   StackResultModel({this.questions});
@@ -12,5 +13,6 @@ class StackResultModel {
         questions.add(new StackModel.fromJson(v));
       });
     }
+    notifyListeners();
   }
 }
