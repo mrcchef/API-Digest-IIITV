@@ -1,22 +1,17 @@
-import 'package:api_digest_iiitv/modals/questions.dart';
+import 'package:api_digest_iiitv/core/api_client.dart';
 import 'package:api_digest_iiitv/modals/stack_entity.dart';
+import 'package:api_digest_iiitv/modals/stack_remote_data_source.dart';
 import 'package:api_digest_iiitv/widgets/question_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class DisplayQuestions extends StatefulWidget {
-  @override
-  _DisplayQuestionsState createState() => _DisplayQuestionsState();
-}
-
-class _DisplayQuestionsState extends State<DisplayQuestions> {
-  Map<String, dynamic> response;
-
+class DisplayQuestions extends StatelessWidget {
   List<StackEntity> questions;
+
+  DisplayQuestions({this.questions});
 
   @override
   Widget build(BuildContext context) {
-    questions = Provider.of<Questions>(context, listen: false).questions;
+  
     return Container(
       child: Expanded(
         child: Column(

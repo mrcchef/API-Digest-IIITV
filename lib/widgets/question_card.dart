@@ -10,16 +10,39 @@ class QuestionCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       child: InkWell(
         onTap: () {},
-        child: Column(
-          children: [
-            ListTile(
-              title: Text("${stackEntity.title}"),
-            ),
-            Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-          ],
+        child: Card(
+          color: Colors.green[50],
+          shadowColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            children: [
+              ListTile(
+                title: Text("${stackEntity.title}"),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (ctx, index) {
+                    return Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(stackEntity.tags[index]),
+                      ),
+                      color: Colors.green[100],
+                      shadowColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    );
+                  },
+                  itemCount: stackEntity.tags.length,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

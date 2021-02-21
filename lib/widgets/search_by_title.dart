@@ -1,4 +1,6 @@
+import 'package:api_digest_iiitv/usecase/get_questions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchByTitle extends StatefulWidget {
   @override
@@ -7,17 +9,30 @@ class SearchByTitle extends StatefulWidget {
 
 class _SearchByTitleState extends State<SearchByTitle> {
   final Key _form = GlobalKey<FormState>();
+  final titleController = TextEditingController();
+  final tagsController = TextEditingController();
 
-  String question;
-  String tags;
+  String title = "";
+  String tags = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void submit() {
-    print(question);
+    title = titleController.text;
+    tags = tagsController.text;
+    print(title);
     print(tags);
+    final questionMdl =
+        Provider.of<QuestionDataProvider>(context, listen: false);
+    questionMdl.getQuestionDataSearch(context, tags, title);
   }
 
   @override
   Widget build(BuildContext context) {
+    final questionMdl = Provider.of<QuestionDataProvider>(context);
     return Container(
       padding: const EdgeInsets.all(10),
       child: Card(
@@ -29,24 +44,26 @@ class _SearchByTitleState extends State<SearchByTitle> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: titleController,
                   decoration: InputDecoration(labelText: 'Your Question'),
                   textInputAction: TextInputAction.next,
-                  onSaved: (newQuestion) {
-                    setState(() {
-                      question = newQuestion;
-                    });
-                  },
+                  // onSaved: (newQuestion) {
+                  //   setState(() {
+                  //     title = newQuestion;
+                  //   });
+                  // },
                 ),
                 TextFormField(
+                  controller: tagsController,
                   decoration: InputDecoration(
                       labelText: 'Tags',
                       hintText: 'Add tags seperated by semicolons'),
                   textInputAction: TextInputAction.done,
-                  onSaved: (newTag) {
-                    setState(() {
-                      tags = newTag;
-                    });
-                  },
+                  // onSaved: (newTag) {
+                  //   setState(() {
+                  //     tags = newTag;
+                  //   });
+                  // },
                 ),
                 SizedBox(
                   height: 5,

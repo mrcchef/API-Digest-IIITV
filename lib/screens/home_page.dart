@@ -1,7 +1,4 @@
-import 'package:api_digest_iiitv/core/api_client.dart';
-import 'package:api_digest_iiitv/modals/questions.dart';
-import 'package:api_digest_iiitv/modals/stack_remote_data_source.dart';
-import 'package:api_digest_iiitv/modals/stack_result_model.dart';
+import 'package:api_digest_iiitv/usecase/get_questions.dart';
 import 'package:api_digest_iiitv/widgets/appbar.dart';
 import 'package:api_digest_iiitv/widgets/display_questions.dart';
 import 'package:api_digest_iiitv/widgets/main_drawer.dart';
@@ -17,42 +14,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _runDidDependencies = false;
-  bool _isLoading = false;
-
+  @override
   void initState() {
+    final questionMdl =
+        Provider.of<QuestionDataProvider>(context, listen: false);
+    questionMdl.getQuestionData(context);
+
     super.initState();
-  }
-
-  void didChangeDependencies() {
-    if (!_runDidDependencies) {
-      setState(() {
-        _isLoading = true;
-      });
-
-      Provider.of<Questions>(context).fetchAndShowQuestions().then((_) {
-        _runDidDependencies = true;
-        setState(() {
-          _isLoading = false;
-        });
-      });
-      super.didChangeDependencies();
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final questionMdl = Provider.of<QuestionDataProvider>(context);
     return Scaffold(
       appBar: Appbar(),
       drawer: MainDrawer(),
       body: Column(
         children: [
           SearchByTitle(),
-          if (_isLoading)
+          if (questionMdl.loading)
             Center(
               child: CircularProgressIndicator(),
             ),
-          if (!_isLoading) DisplayQuestions(),
+          if (!questionMdl.loading)
+            DisplayQuestions(questions: questionMdl.questions),
         ],
       ),
     );

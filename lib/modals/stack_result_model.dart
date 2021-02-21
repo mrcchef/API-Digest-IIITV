@@ -7,14 +7,15 @@ class StackResultModel with ChangeNotifier {
   StackResultModel({this.questions});
 
   StackResultModel.fromJson(Map<String, dynamic> json) {
-    final List<StackModel> ques = [];
+    // final List<StackModel> ques = [];
     if (json['items'] != null) {
       // movies = new List<MovieModel>();
       json['items'].forEach((v) {
-        ques.add(new StackModel.fromJson(v));
+        questions.add(new StackModel.fromJson(v));
       });
     }
-    questions = ques;
-    notifyListeners();
+    // print(questions);
+    // questions = ques;
+    // notifyListeners();
   }
 }

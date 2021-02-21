@@ -17,16 +17,6 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   bool isLoading = false;
 
-  // Future<void> enter() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height * 0.05;

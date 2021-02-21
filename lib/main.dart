@@ -1,10 +1,13 @@
+import 'package:api_digest_iiitv/modals/stack_result_model.dart';
 import 'package:api_digest_iiitv/screens/about_us.dart';
+import 'package:api_digest_iiitv/usecase/get_questions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './screens/welcome_page.dart';
 import './screens/home_page.dart';
 import 'modals/questions.dart';
+import 'modals/stack_remote_data_source.dart';
 
 void main() {
   // print(response);
@@ -17,10 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => Questions()),
+        ChangeNotifierProvider(create: (_) => QuestionDataProvider()),
       ],
-      child: Consumer<Questions>(
-        builder: (ctx, question, _) {
+      child: Consumer<QuestionDataProvider>(
+        builder: (ctx, stackResultModel, _) {
           return MaterialApp(
             title: 'Flutter Demo',
             theme: ThemeData(
@@ -31,8 +34,8 @@ class MyApp extends StatelessWidget {
               HomePage.routeName: (ctx) => HomePage(),
               AboutUs.routeName: (ctx) => AboutUs(),
             },
-            home: ChangeNotifierProvider<Questions>(
-              create: (_) => Questions(),
+            home: ChangeNotifierProvider<QuestionDataProvider>(
+              create: (_) => QuestionDataProvider(),
               builder: (context, _) => WelcomePage(),
             ),
           );
