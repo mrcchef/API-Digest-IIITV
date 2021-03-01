@@ -1,4 +1,5 @@
 import 'package:api_digest_iiitv/modals/stack_entity.dart';
+import 'package:api_digest_iiitv/screens/answer.dart';
 import 'package:flutter/material.dart';
 
 class QuestionCard extends StatelessWidget {
@@ -9,7 +10,8 @@ class QuestionCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       child: InkWell(
-        onTap: () {},
+        onTap: () => Navigator.of(context)
+            .pushNamed(Answer.routeName, arguments: {"question": stackEntity}),
         child: Card(
           color: Colors.green[50],
           shadowColor: Colors.green,

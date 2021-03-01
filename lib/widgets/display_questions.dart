@@ -25,7 +25,7 @@ class DisplayQuestions extends StatelessWidget {
             Expanded(
               child: questions.length == 0
                   ? Center(
-                      child: Text("Oops!!! \n No result found!!!"),
+                      child: Text("          Oops!!! \n No result found!!!"),
                     )
                   : ListView.builder(
                       itemBuilder: (ctx, index) {

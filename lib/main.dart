@@ -1,5 +1,6 @@
 import 'package:api_digest_iiitv/modals/stack_result_model.dart';
 import 'package:api_digest_iiitv/screens/about_us.dart';
+import 'package:api_digest_iiitv/screens/answer.dart';
 import 'package:api_digest_iiitv/usecase/get_questions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
             routes: {
               HomePage.routeName: (ctx) => HomePage(),
               AboutUs.routeName: (ctx) => AboutUs(),
+              Answer.routeName: (ctx) => Answer(),
             },
             home: ChangeNotifierProvider<QuestionDataProvider>(
               create: (_) => QuestionDataProvider(),
